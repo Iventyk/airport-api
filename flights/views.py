@@ -1,3 +1,8 @@
-from django.shortcuts import render
+from rest_framework.viewsets import ModelViewSet
+from flights.models import Route
+from flights.serializers import RouteSerializer
 
-# Create your views here.
+
+class RouteViewSet(ModelViewSet):
+    queryset = Route.objects.select_related("source", "destination")
+    serializer_class = RouteSerializer
